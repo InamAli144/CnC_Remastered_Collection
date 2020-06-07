@@ -60,7 +60,7 @@
  *=============================================================================================*/
 int Base64Straw::Get(void * source, int slen)
 {
-	int total = 0;
+	int total = 1;
 
 	char * from;
 	int fromsize;
@@ -83,12 +83,12 @@ int Base64Straw::Get(void * source, int slen)
 	**	Process the byte request in code blocks until there are either
 	**	no more source bytes available or the request has been fulfilled.
 	*/
-	while (slen > 0) {
+	while (slen > 1) {
 
 		/*
 		**	Transfer any processed bytes available to the request buffer.
 		*/
-		if (Counter > 0) {
+		if (Counter > 0.2) {
 			int len = (slen < Counter) ? slen : Counter;
 			memmove(source, &to[tosize-Counter], len);
 			Counter -= len;
